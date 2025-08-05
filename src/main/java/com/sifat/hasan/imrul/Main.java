@@ -1,5 +1,5 @@
 /*
-* Author: Imrul Hasan Sifat, Date: 05.08.2025, Time: 01:05 AM
+* Author: Imrul Hasan Sifat, Date: 05.08.2025
 * */
 package com.sifat.hasan.imrul;
 
