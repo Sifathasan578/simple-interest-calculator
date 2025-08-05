@@ -15,33 +15,31 @@ public class Main {
         int principalAmount = scanner.nextInt();
 
         System.out.print("Enter yearly interest rate: ");
-        float yearlyInterestRate = scanner.nextFloat();
-        scanner.nextLine(); // Consumes the extra character
+        double yearlyInterestRate = scanner.nextDouble();
+        scanner.nextLine(); // Consumes the extra character or new line
 
-        System.out.print("Enter time (format: <amount>m or <amount>y): ");
+
         String time;
+        while(true) { // Ensuring the time format is okay!
+            System.out.print("Enter time (format: <amount>m or <amount>y): ");
+            time = scanner.nextLine().trim();
 
-        // Ensuring the time format is okay!
-        while(true) {
-            time = scanner.nextLine();
             if(time.endsWith("y") || time.endsWith("m")) {
                 break;
-            }
-            else {
-                System.out.println("\nInvalid time format. Please use <amount>y or <amount>m!!\n");
-                System.out.print("Enter time (format: <amount>m or <amount>y): ");
+            } else {
+                System.out.println("❌ Invalid time format. Please use <amount>y or <amount>m (e.g., 18m, 2.5y).\n");
             }
         }
 
         String timeNumeric = time.substring(0, time.length() - 1); // Removing the string part
-        float timeFloat = Float.parseFloat(timeNumeric);
+        double timeInYears = Double.parseDouble(timeNumeric); // Converting string to double
 
         // Converts time to year if given in months
         if(time.charAt(time.length() - 1) == 'm') {
-            timeFloat /= 12.0F;
+            timeInYears /= 12.0F;
         }
 
-        float interest = (principalAmount * yearlyInterestRate * timeFloat) / 100.0F;
-        System.out.printf("\nTotal interest is: %.2f\n", interest);
+        double interest = (principalAmount * yearlyInterestRate * timeInYears) / 100.0;
+        System.out.printf("\n✅ Total interest is: %.2f\n", interest);
     }
 }
